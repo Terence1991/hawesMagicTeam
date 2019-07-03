@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Profile from './Profile'
 
-const dreamteam = {
+const clientsTeam = []
+
+const dreamTeam = {
     uuidv1: {
         name: ' Mathew Kitching',
         phoneNumber: '514745943',
@@ -49,23 +51,33 @@ const dreamteam = {
 }
 
 
-
-//need to set up function to push onto arrary
-//figure out how to set up flag to check if custom clicks it
-const clientSelection = (teamMember) => {
-    const team = []
-    if(!isClicked) {
-     team.push(Object.keys())
+        const clientSelection = (teamMember) => {
+        if (!dreamTeam[teamMember]) {
+          throw 'team member doesnt exist';
+        }
+        if (!dreamTeam[teamMember].isClicked) {
+          clientsTeam.push(dreamTeam[teamMember])
+          dreamTeam[teamMember].isClicked = true
+          return teamMember + ' has been added to clients team'
+        } else {
+          return teamMember + ' has already been added to team'
+        }
     }
-    
-    
-    return team;
-}
 
 
-//function to set individual flag  on object to click 
-const customerClick = () => {
 
+const deleteTeamMember = (teamMember) => {
+	if (!clientsTeam) {
+		 throw 'Team does not exist';
+	}
+	
+    const memberIndex = clientsTeam.IndexOf(teamMember);
+	
+	if (memberIndex === -1) {
+		  throw 'Member is not part of team';
+	};
+
+    clientsTeam = clientsTeam.slice(memberIndex)
 }
 
 
@@ -74,8 +86,8 @@ class App extends Component {
         return (
             <div>
 			{
-				Object.keys(dreamteam).map((key) => {
-					return <Profile key={key} profile={dreamteam[key]} />
+				Object.keys(dreamTeam).map((key) => {
+					return <Profile key={key} profile={dreamTeam[key]} />
 				})
 			}
             </div>
