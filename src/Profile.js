@@ -6,12 +6,12 @@ import Button from '@material-ui/core/Button';
 
 export class Profile extends React.Component { 
     render() {
+        console.log(this.props)
         return (
             <div>
                 Profile
-
-                <Button variant="contained" color="Primary">
-                Add Team Member 
+                <Button onClick={this.props.clientselection} className='AddButton 'variant="contained" color="primary">
+                    Add Team Member 
                 </Button> 
             </div>
         )

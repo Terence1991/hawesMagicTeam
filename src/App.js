@@ -51,48 +51,55 @@ const dreamTeam = {
 }
 
 
-        const clientSelection = (teamMember) => {
-        if (!dreamTeam[teamMember]) {
-          throw new Error('team member doesnt exist')
-        }
-        if (!dreamTeam[teamMember].isClicked) {
-          clientsTeam.push(dreamTeam[teamMember])
-          dreamTeam[teamMember].isClicked = true
-          return teamMember + ' has been added to clients team'
-        } else {
-          return teamMember + ' has already been added to team'
-        }
+const clientSelection = (uuid) => {
+
+    if (!dreamTeam[uuid]) {
+      throw new Error('team member doesnt exist')
     }
+    if (!dreamTeam[uuid].isClicked) {
+      clientsTeam.push(dreamTeam[uuid])
+      dreamTeam[uuid].isClicked = true
+      return dreamTeam[uuid].name + ' has been added to clients team';
+    } else {
+      return dreamTeam[uuid].name + ' has already been added to team';
+    }
+}
 
 
 
-const deleteTeamMember = (teamMember) => {
-	if (!clientsTeam) {
-		 throw new Error('Team Member does not Exist or has already been d')
-	}
-	
-    const memberIndex = clientsTeam.IndexOf(teamMember);
-	
-	if (memberIndex === -1) {
-        throw new Error('Member is not part of team')
-	};
+const deleteTeamMember = (uuid) => {
+if (!clientsTeam) {
+     throw new Error('Team Member does not Exist or has already been d')
+}
 
-    clientsTeam = clientsTeam.slice(memberIndex)
+const memberIndex = clientsTeam.IndexOf(dreamTeam[uuid]);
+
+if (memberIndex === -1) {
+    throw new Error('Member is not part of team')
+};
+
+clientsTeam = clientsTeam.slice(memberIndex)
 }
 
 
 class App extends Component {
-    render() {
-        return (
-            <div>
-			{
-				Object.keys(dreamTeam).map((key) => {
-					return <Profile key={key} profile={dreamTeam[key]} />
-				})
-			}
-            </div>
-        )
-    }
+render() {
+    console.log(clientsTeam)
+    return (
+        <div>
+        {
+            Object.keys(dreamTeam).map((key) => {
+                return <Profile 
+                key={key}  
+                deleteteam={() => deleteTeamMember(key)}
+                clientselection={() => clientSelection(key)} 
+                profile={dreamTeam[key]} 
+                />
+            })
+        }
+        </div>
+    )
+}
 }
 
 
