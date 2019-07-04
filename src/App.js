@@ -53,7 +53,7 @@ const dreamTeam = {
 
         const clientSelection = (teamMember) => {
         if (!dreamTeam[teamMember]) {
-          throw 'team member doesnt exist';
+          throw new Error('team member doesnt exist')
         }
         if (!dreamTeam[teamMember].isClicked) {
           clientsTeam.push(dreamTeam[teamMember])
@@ -68,13 +68,13 @@ const dreamTeam = {
 
 const deleteTeamMember = (teamMember) => {
 	if (!clientsTeam) {
-		 throw 'Team does not exist';
+		 throw new Error('Team Member does not Exist or has already been d')
 	}
 	
     const memberIndex = clientsTeam.IndexOf(teamMember);
 	
 	if (memberIndex === -1) {
-		  throw 'Member is not part of team';
+        throw new Error('Member is not part of team')
 	};
 
     clientsTeam = clientsTeam.slice(memberIndex)
