@@ -75,7 +75,7 @@ if (!clientsTeam) {
 const memberIndex = clientsTeam.indexOf(dreamTeam[uuid]);
 
 if (memberIndex === -1) {
-    throw new Error('Member is not part of team')
+    alert('Member not added to the team ')
 };
 
 clientsTeam = clientsTeam.slice(memberIndex)
