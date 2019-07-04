@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Profile from './Profile'
+import Profile from './Profile';
 
-const clientsTeam = []
+let clientsTeam = []
 
 const dreamTeam = {
     uuidv1: {

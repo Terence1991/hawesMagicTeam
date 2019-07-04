@@ -11,7 +11,7 @@ export class Profile extends React.Component {
                 Profile
 
                 <Button variant="contained" color="Primary">
-                Add Team Member
+                Add Team Member 
                 </Button> 
             </div>
         )
