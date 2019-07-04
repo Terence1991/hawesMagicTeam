@@ -9,8 +9,10 @@ export class Profile extends React.Component {
         console.log(this.props)
         return (
             <div>
-                Profile
-                <Button onClick={this.props.clientselection} className='AddButton 'variant="contained" color="primary">
+                <Button onClick={this.props.deleteteam} className='deleteButton' variant='contained' color="red">
+                    Delete Team Member
+                </Button>
+                <Button onClick={this.props.clientselection} className='addButton 'variant="contained" color="primary">
                     Add Team Member 
                 </Button> 
             </div>

@@ -72,7 +72,7 @@ if (!clientsTeam) {
      throw new Error('Team Member does not Exist or has already been d')
 }
 
-const memberIndex = clientsTeam.IndexOf(dreamTeam[uuid]);
+const memberIndex = clientsTeam.indexOf(dreamTeam[uuid]);
 
 if (memberIndex === -1) {
     throw new Error('Member is not part of team')
