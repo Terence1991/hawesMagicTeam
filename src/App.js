@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Profile from './Profile';
+import TopBar from './TopBar'
 
 let clientsTeam = []
 
@@ -65,6 +66,9 @@ const clientSelection = (uuid) => {
     }
 }
 
+const refershTeamSelection = () => {
+    clientsTeam = []
+} 
 
 
 const deleteTeamMember = (uuid) => {
@@ -84,9 +88,9 @@ clientsTeam = clientsTeam.slice(memberIndex)
 
 class App extends Component {
 render() {
-    console.log(clientsTeam)
     return (
         <div>
+            <TopBar/>
         {
             Object.keys(dreamTeam).map((key) => {
                 return <Profile 
@@ -95,6 +99,7 @@ render() {
                 clientselection={() => clientSelection(key)} 
                 profile={dreamTeam[key]} 
                 />
+
             })
         }
         </div>
