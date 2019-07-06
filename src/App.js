@@ -90,7 +90,7 @@ class App extends Component {
 render() {
     return (
         <div>
-            <TopBar/>
+            <TopBar refershteamselection={() => refershTeamSelection()}/>
         {
             Object.keys(dreamTeam).map((key) => {
                 return <Profile 
