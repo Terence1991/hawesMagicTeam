@@ -10,12 +10,17 @@ const dreamTeam = {
         phoneNumber: '514745943',
         email: 'ginger1@dingusmail.com',
         profileImg: "https://upload.wikimedia.org/wikipedia/commons/0/03/Vulpes_vulpes_laying_in_snow.jpg",
+        job: "Code genuis",
+        bio: "I love to play guitar and take long naps",
+        isClicked: false,
     },  
     uuidv2: {
         name: ' Mark Conn',
         phoneNumber: '514745943',
         email: 'murph@dingusmail.com',
         profileImg: "https://upload.wikimedia.org/wikipedia/en/6/62/Kermit_the_Frog.jpg",
+        job: "Code genuis",
+        bio: "I ride my bike everywhere and have lots of tattos",
         isClicked: false,
     }, 
     
@@ -24,6 +29,8 @@ const dreamTeam = {
         phoneNumber: '514745943',
         email: 'codegenuis@dingusmail.com',
         profileImg: "http://www.audienceseverywhere.net/wp-content/uploads/2014/02/grizzly_man_530.jpg",
+        job: "Code genuis",
+        bio: "the big lebowski is my favorite my movie",
         isClicked: false,
     }, 
     uuidv4: {
@@ -31,6 +38,8 @@ const dreamTeam = {
         phoneNumber: '514745943',
         email: 'beer@dingusmail.com',
         profileImg: "https://upload.wikimedia.org/wikipedia/commons/e/ea/Baby_turtle.jpg",
+        job: "Army",
+        bio: "I have a baby",
         isClicked: false,
 
     }, 
@@ -39,6 +48,8 @@ const dreamTeam = {
         phoneNumber: '514745943',
         email: 'mexico69@dingusmail.com',
         profileImg: "https://images-na.ssl-images-amazon.com/images/I/8166xCVDGnL._SY355_.jpg",
+        job: "Code genuis/ Army",
+        bio: "I love mexican and greek food",
         isClicked: false,
     },  
     
@@ -47,6 +58,8 @@ const dreamTeam = {
         phoneNumber: '514745943',
         email: 'nerd@dingusmail.com',
         profileImg: "https://upload.wikimedia.org/wikipedia/commons/3/3c/Yellow_Duck.jpg",
+        job: "Army Oficer",
+        bio: "I like to to work alot",
         isClicked: false, 
     }, 
 }

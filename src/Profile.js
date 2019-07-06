@@ -9,9 +9,23 @@ export class Profile extends React.Component {
         console.log(this.props)
         return (
             <div>
-                <ProfilePicContainer>
-                <ProfilePic src={this.props.profile.profileImg}></ProfilePic>
-                </ProfilePicContainer>
+                <InformationContainer>
+                    <ProfilePicContainer>
+                        <ProfilePic src={this.props.profile.profileImg}></ProfilePic>
+                    </ProfilePicContainer>
+                    <NameContainer>
+                        {this.props.profile.name}
+                    </NameContainer>
+                    <JobContainer>
+                        {this.props.profile.job}
+                    </JobContainer>
+                    <EmailContainer>
+                        {this.props.profile.email}
+                    </EmailContainer>
+                    <BioConatiner>
+                        {this.props.profile.bio}
+                    </BioConatiner>
+                </InformationContainer>
                 <Button onClick={this.props.deleteteam} className='deleteButton' variant='contained' color="prmary">
                     Delete Team Member
                 </Button>
@@ -41,7 +55,30 @@ const ProfilePic = styled.img`
   background-size: cover;
   border-radius: 50%;
  `
-const nameContainer = styled.span`
+
+ const InformationContainer = styled.div`
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 150px;
+    text-align: center;
+ `
+
+const NameContainer = styled.span`
 font-size: 30px;
+`
+const JobContainer = styled.span`
+     font-size: 20px;
+     color: 	#6495ED;
+   `
+
+const EmailContainer = styled.span`
+    font-size: 20px;
+    color: 	#6495ED;
+`
+
+const BioConatiner = styled.span`
+    font-size: 20px;
+    color: 	#6495ED;
 
 `
