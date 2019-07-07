@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import Profile from './Profile';
-import TopBar from './TopBar'
+import TopBar from './TopBar';
+import TeamList from './TeamList';
+import styled from 'styled-components';
+import SnackBar from './SnackBar';
+
+
 
 let clientsTeam = []
 
@@ -65,60 +70,139 @@ const dreamTeam = {
 }
 
 
-const clientSelection = (uuid) => {
-
-    if (!dreamTeam[uuid]) {
-      throw new Error('team member doesnt exist')
-    }
-    if (!dreamTeam[uuid].isClicked) {
-      clientsTeam.push(dreamTeam[uuid])
-      dreamTeam[uuid].isClicked = true
-      return dreamTeam[uuid].name + ' has been added to clients team';
-    } else {
-      return dreamTeam[uuid].name + ' has already been added to team';
-    }
-}
-
-const refershTeamSelection = () => {
-    clientsTeam = []
-} 
-
-
-const deleteTeamMember = (uuid) => {
-if (!clientsTeam) {
-     throw new Error('Team Member does not Exist or has already been d')
-}
-
-const memberIndex = clientsTeam.indexOf(dreamTeam[uuid]);
-
-if (memberIndex === -1) {
-    alert('Member not added to the team ')
-};
-
-clientsTeam = clientsTeam.slice(memberIndex)
-}
 
 
 class App extends Component {
+    state = {
+        errorMessage: null,
+        displayErrorMessage: false,
+        clientsTeam: []    
+    }
+    
+    clientSelection = (uuid) => {
+        console.log('workinggg')
+        if (!dreamTeam[uuid]) {
+          this.displayErrorMessage('team member doesnt exist')
+        }
+        if (!dreamTeam[uuid].isClicked) {
+            this.setState({
+                clientsTeam: [...this.state.clientsTeam, dreamTeam[uuid]],
+                response: `${dreamTeam[uuid].name} has been added to clients team`
+            });
+          dreamTeam[uuid].isClicked = true;
+        } else {
+            this.setState({
+                response:  dreamTeam[uuid].name + ' has already been added to team'
+            });
+        }
+    }
+    
+     refershTeamSelection = () => {
+         console.log("im working")
+        clientsTeam = []
+    } 
+    
+    
+    deleteTeamMember = (uuid) => {
+        console.log("im working")
+    if (!this.state.clientsTeam.length) {
+       this.displayErrorMessage('Team Member does not Exist or has already been deleted')
+       return;
+    }
+    
+    this.setState({
+        clientsTeam: this.state.clientsTeam.filter((profile) => profile.phoneNumber !== dreamTeam[uuid].phoneNumber)
+    });
+    dreamTeam[uuid].isClicked = false;
+    }
+    
+    
+     displayErrorMessage = (error) => {
+        this.setState({
+            errorMessage: error,
+            displayErrorMessage: true,  
+        })
+    
+        setTimeout(() => {
+            this.setState({
+                errorMessage: null,
+                displayErrorMessage: false, 
+            })
+        }, 3000)
+    
+    }
+
+
+
 render() {
+
+    const { errorMessage, displayErrorMessage, clientsTeam } = this.state;
     return (
-        <div>
-            <TopBar refershteamselection={() => refershTeamSelection()}/>
+        <Wrapper>
+            <TopBar displayErrorMessage={displayErrorMessage} refershteamselection={this.refershTeamSelection}>
+                <SnackBar errorMessage={errorMessage}/>
+            </TopBar>
+
         {
             Object.keys(dreamTeam).map((key) => {
-                return <Profile 
-                key={key}  
-                deleteteam={() => deleteTeamMember(key)}
-                clientselection={() => clientSelection(key)} 
-                profile={dreamTeam[key]} 
-                />
+                return (
+                    <Profile 
+                        key={key}  
+                        profile={dreamTeam[key]} 
+                    >
+                        <ButtonContainer>
+                            <Btn onClick={() => this.deleteTeamMember(key)}>
+                                Remove Team Member
+                            </Btn>
+                            <Btn onClick={() => this.clientSelection(key)}>
+                                Add Team Member 
+                            </Btn> 
+                        </ButtonContainer>
+                    </Profile>
 
+                )
             })
         }
-        </div>
+        <TeamList>
+            {
+                clientsTeam && clientsTeam.map((profile, index) => {
+                    return (
+                        <Profile key={index} profile={profile}/>
+                    )
+                })
+            }
+        </TeamList>
+     
+        </Wrapper>
     )
 }
 }
 
 
 export default App;
+
+
+const Wrapper = styled.div`
+  color: #F8F8FF;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+`
+const ButtonContainer = styled.div`
+    height: 60px;
+    background-color: #fff;
+    text-align: center;
+    line-height: 60px;
+    font-size: 17px;
+    color: #008CBA;
+    border-radius:0 0 7px 7px;
+`
+
+const Btn = styled.div`
+        all: unset;
+      padding: 0;
+      width:49%;
+      transition: all 0.2s;
+      cursor:pointer;
+      &:first-child{border-right:2px solid #ecf0f1;}
+      &:hover{ font-size: 19px;}
+`
