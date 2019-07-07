@@ -38,10 +38,10 @@ const Card = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 400px;
-  height: 450px;
   background-color: #FFFAF0;
   border-radius: 7px;
-  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.3); 
+  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.3);
+  margin: 8px 0px;
 `
 
 const ImgContainer = styled.div`

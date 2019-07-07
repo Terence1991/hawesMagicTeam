@@ -142,36 +142,41 @@ render() {
             <TopBar displayErrorMessage={displayErrorMessage} refershteamselection={this.refershTeamSelection}>
                 <SnackBar errorMessage={errorMessage}/>
             </TopBar>
-
-        {
-            Object.keys(dreamTeam).map((key) => {
-                return (
-                    <Profile 
-                        key={key}  
-                        profile={dreamTeam[key]} 
-                    >
-                        <ButtonContainer>
-                            <Btn onClick={() => this.deleteTeamMember(key)}>
-                                Remove Team Member
-                            </Btn>
-                            <Btn onClick={() => this.clientSelection(key)}>
-                                Add Team Member 
-                            </Btn> 
-                        </ButtonContainer>
-                    </Profile>
-
-                )
-            })
-        }
-        <TeamList>
+        <BodyWrapper>
+            <TeamList title='Please select your team memebers'>
             {
-                clientsTeam && clientsTeam.map((profile, index) => {
+                Object.keys(dreamTeam).map((key) => {
                     return (
-                        <Profile key={index} profile={profile}/>
+                        <Profile 
+                            key={key}  
+                            profile={dreamTeam[key]} 
+                        >
+                            <ButtonContainer>
+                                <Btn onClick={() => this.deleteTeamMember(key)}>
+                                    Remove Team Member
+                                </Btn>
+                                <Btn  type={'add'} onClick={() => this.clientSelection(key)}>
+                                    Add Team Member 
+                                </Btn> 
+                            </ButtonContainer>
+                        </Profile>
+
                     )
                 })
             }
-        </TeamList>
+            </TeamList>
+
+            <TeamList title={!clientsTeam.length ? 'Currently no team members selected' : 'Current team'}>
+                {
+                    clientsTeam && clientsTeam.map((profile, index) => {
+                        return (
+                            <Profile key={index} profile={profile}/>
+                        )
+                    })
+                }
+            </TeamList>
+        </BodyWrapper>
+       
      
         </Wrapper>
     )
@@ -180,6 +185,7 @@ render() {
 
 
 export default App;
+
 
 
 const Wrapper = styled.div`
@@ -199,10 +205,26 @@ const ButtonContainer = styled.div`
 
 const Btn = styled.div`
         all: unset;
-      padding: 0;
+      margin: 0 8px;
       width:49%;
       transition: all 0.2s;
       cursor:pointer;
-      &:first-child{border-right:2px solid #ecf0f1;}
+      padding: 8px;
+      border-radius: 8px;
+        border: ${({ type }) => type === 'add' 
+        ? '1px solid green' 
+        : '1px solid red'};
+
+        background-color: ${({ type }) => type === 'add' 
+        ? 'lightgreen' 
+        : 'pink'};
       &:hover{ font-size: 19px;}
-`
+`;
+
+const BodyWrapper = styled.div`
+  display: flex; 
+  flex-direction: row;
+  padding: 76px 8px;
+  justify-content: center;
+  width: 100%;
+`;
